@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class Player : MonoBehaviour
     public InventoryManager inventoryManager;
 
     private TileManager tileManager;
+
+    public Sprite plant;
+
+    public GameObject fruit;
 
     private void Start()
     {
@@ -33,10 +38,24 @@ public class Player : MonoBehaviour
                 string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
-                    if(tileName == "Interactable"&& inventoryManager.toolbar.selectedSlot.itemName=="Hoe")
+                    if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
                         tileManager.SetInteracted(position);
                     }
+                    Debug.Log(inventoryManager.toolbar.selectedSlot.isSeed);
+                    /*if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.isSeed == true)
+                    {
+                        Debug.Log("true");
+                        *//*fruit.GetComponent<SpriteRenderer>().sprite = plant;*//*
+                        Instantiate(fruit, position, Quaternion.identity);
+                    }*/
+                    if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
+                    {
+                        Debug.Log("true");
+                        /*fruit.GetComponent<SpriteRenderer>().sprite = plant;*/
+                        Instantiate(fruit, position, Quaternion.identity);
+                    }
+
                 }
             }
         }
@@ -49,10 +68,15 @@ public class Player : MonoBehaviour
                     (int)Math.Floor(worldPoint.y), 0);
 
                 string tileName = tileManager.GetTileName(position);
-                Debug.Log(tileName);
+                
+
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
                     if (tileName == "Basic Grass Biom things 1_1" && inventoryManager.toolbar.selectedSlot.itemName == "Axe")
+                    {
+                        tileManager.SetTreeInteracted(position);
+                    }
+                    if (tileName == "Basic Grass Biom things 1_1" && inventoryManager.toolbar.selectedSlot.itemName == "PotatoeSeedPack")
                     {
                         tileManager.SetTreeInteracted(position);
                     }

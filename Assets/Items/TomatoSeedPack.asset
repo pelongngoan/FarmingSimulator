@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773ef74190949344483eb3b1231729ab, type: 3}
+  m_Name: TomatoSeedPack
+  m_EditorClassIdentifier: 
+  itemName: TomatoSeedPack
+  icon: {fileID: 157025947, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  isCrop: 1
+  cropName: Tomato
+  plant: {fileID: 0}
+  plantStages:
+  - {fileID: -20854439, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  - {fileID: 886921335, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  - {fileID: 2101447572, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  - {fileID: -1388407397, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  - {fileID: 730289030, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  - {fileID: -3245166, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  timeBtwStage: 5

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 773ef74190949344483eb3b1231729ab, type: 3}
-  m_Name: Apple
+  m_Name: PotatoeSeedPack
   m_EditorClassIdentifier: 
-  itemName: Apple
-  icon: {fileID: -1465367627, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
-  isCrop: 0
+  itemName: PotatoeSeedPack
+  icon: {fileID: -590860366, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  isCrop: 1

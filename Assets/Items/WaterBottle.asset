@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 773ef74190949344483eb3b1231729ab, type: 3}
-  m_Name: Apple
+  m_Name: WaterBottle
   m_EditorClassIdentifier: 
-  itemName: Apple
-  icon: {fileID: -1465367627, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+  itemName: WaterBottle
+  icon: {fileID: -376824107, guid: e8d4d148de5643c4eb0bf6a599f16aa2, type: 3}
   isCrop: 0
+  cropName: Crop Name
+  plant: {fileID: 0}
+  plantStages: []
+  timeBtwStage: 0

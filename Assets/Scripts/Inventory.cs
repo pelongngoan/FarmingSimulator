@@ -10,6 +10,7 @@ public class Inventory
     public class Slot
     {
         public string itemName;
+        public bool isSeed;
         public int count;
         public int maxAllowed;
         public Sprite icon;
@@ -43,14 +44,16 @@ public class Inventory
         public void AddItem(Item item)
         {
             this.itemName = item.data.itemName;
+            this.isSeed = item.data.isCrop;
             this.icon = item.data.icon;
             count++;
         }
 
-        public void AddItem(string itemName,Sprite icon,int maxAllowed)
+        public void AddItem(string itemName,Sprite icon,int maxAllowed, bool isSeed)
         {
             this.itemName = itemName;
             this.icon = icon;
+            this.isSeed=isSeed;
             count++;
             this.maxAllowed = maxAllowed;
         }
@@ -124,7 +127,7 @@ public class Inventory
         {
             for(int i = 0; i < numToMove; i++)
             {
-                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed,fromSlot.isSeed);
                 fromSlot.RemoveItem();
             }
         }

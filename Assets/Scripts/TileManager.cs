@@ -10,6 +10,8 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tile plowedTile;
     [SerializeField] private Tile treeTile;
     [SerializeField] private Item treeLog;
+    public SpriteRenderer plant;
+
     //On start set the interactbable map to  be hidden
     void Start()
     {
@@ -30,8 +32,10 @@ public class TileManager : MonoBehaviour
     //Set the postion stand on to be interactable tile
     public void SetInteracted(Vector3Int position)
     {
-        interactableMap.SetTile(position, plowedTile);
+        
+        interactableMap.SetTile(position, plowedTile);    
     }
+
 
     public void SetTreeInteracted(Vector3Int position)
     {
