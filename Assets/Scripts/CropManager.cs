@@ -6,20 +6,36 @@ using UnityEngine;
 
 public class CropManager : MonoBehaviour
 {
-    /*public InventoryManager inventoryManager;*/
-    /*private TileManager tileManager;*/
-    bool isPlanted = false;
-    public SpriteRenderer plant;
-    public SpriteRenderer chicken;
-    public Sprite[] plantStages;
-    int plantStage = 0;
-    float timeBtwStage = 2f;
-    float timer;
-    [SerializeField] private ItemData potatoeSeedPack;
+    public Crop[] crops;
+    //A dictionary [key,values] to store item data
+    private Dictionary<string, Crop> nameToCropDict =
+        new Dictionary<string, Crop>();
 
+    private void Awake()
+    {
+        foreach (Crop crop in crops)
+        {
+            AddCrop(crop);
+        }
+    }
+    private void AddCrop(Crop crop)
+    {
+        if (!nameToCropDict.ContainsKey(crop.data.cropName))
+        {
+            nameToCropDict.Add(crop.data.cropName, crop);
+        }
+    }
+    public Crop GetCropByName(string key)
+    {
+        if (nameToCropDict.ContainsKey(key))
+        {
+            return nameToCropDict[key];
+        }
+        return null;
+    }
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         
     }
@@ -29,7 +45,7 @@ public class CropManager : MonoBehaviour
         if (isPlanted)
         {
             timer -= Time.deltaTime;
-            if (timer < 0 && plantStage<plantStages.Length-1)
+            if (timer < 0 && plantStage<cropData[].plantStages.Length-1)
             {
                 timer = timeBtwStage;
                 plantStage++;
@@ -51,25 +67,11 @@ public class CropManager : MonoBehaviour
         }
         else
         {
-            Plant();
+            Plant(inventoryManager.toolbar.selectedSlot.itemName);
         }
     }
-    /*public void Inter()
-    {
-        if (isPlanted)
-        {
-            if (plantStage == plantStages.Length - 1)
-            {
-                Harvest();
-            }
-        }
-        else
-        {
-            Plant();
-        }
-    }*/
 
-    private void Plant()
+    private void Plant(string crop)
     {
         isPlanted = true;
         plant.gameObject.SetActive(true);
@@ -83,11 +85,11 @@ public class CropManager : MonoBehaviour
         UpdatePlant();
         timer = timeBtwStage;
         plant.gameObject.SetActive(false);
-        /*GameManager.instance.player.DropItem(potatoeSeedPack, 3);*/
+        *//*GameManager.instance.player.DropItem(potatoeSeedPack, 3);*//*
     }
 
     void UpdatePlant()
     {
         plant.sprite = plantStages[plantStage];
-    }
+    }*/
 }

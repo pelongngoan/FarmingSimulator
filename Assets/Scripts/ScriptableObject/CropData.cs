@@ -9,9 +9,6 @@ public class CropData : ScriptableObject
     public Sprite icon;
     public SpriteRenderer plant;
     public Sprite[] plantStages;
-    int plantStage = 0;
     public float timeBtwStage ;
-    float timer;
-    [SerializeField] private Item potatoeSeedPack;
-
+    [SerializeField] private Item dropData;
 }

@@ -8,10 +8,4 @@ public class ItemData : ScriptableObject
     public string itemName = "Item Name";
     public Sprite icon;
     public bool isCrop;
-    public string cropName = "Crop Name";
-    public SpriteRenderer plant;
-    public Sprite[] plantStages;
-    int plantStage = 0;
-    public float timeBtwStage;
-    float timer;
 }

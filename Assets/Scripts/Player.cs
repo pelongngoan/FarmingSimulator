@@ -38,21 +38,13 @@ public class Player : MonoBehaviour
                 string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
+
                     if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
                         tileManager.SetInteracted(position);
                     }
-                    Debug.Log(inventoryManager.toolbar.selectedSlot.isSeed);
-                    /*if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.isSeed == true)
+                    if (tileName == "Summer_Plowed" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
                     {
-                        Debug.Log("true");
-                        *//*fruit.GetComponent<SpriteRenderer>().sprite = plant;*//*
-                        Instantiate(fruit, position, Quaternion.identity);
-                    }*/
-                    if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
-                    {
-                        Debug.Log("true");
-                        /*fruit.GetComponent<SpriteRenderer>().sprite = plant;*/
                         Instantiate(fruit, position, Quaternion.identity);
                     }
 
