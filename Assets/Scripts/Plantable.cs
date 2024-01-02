@@ -1,70 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Plantable : MonoBehaviour
 {
-    public string inventoryName;
     bool isPlanted = false;
     int plantStage = 0;
     float timer;
-    private Inventory inventory;
-    Crop cropToPlant;
-    InventoryManager inventoryManager;
-
-
-    private void Start()
+    public Sprite icon;
+    public SpriteRenderer chicken;
+    public SpriteRenderer plant;
+    public Sprite[] plantStages;
+    public float timeBtwStage = 2f;
+    Player player;
+    public Item potatoeSeedPack;
+    [SerializeField] private List<CropData> cropData;
+    /*private void Start()
     {
-        
-    
-    }
+        inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);
+
+    }*/
+    /*private void Awake()
+    {
+        inventoryManager = GetComponent<InventoryManager>();
+
+    }*/
+
     void Update()
     {
         if (isPlanted)
         {
             timer -= Time.deltaTime;
-            if (timer < 0 && plantStage < cropToPlant.data.plantStages.Length - 1)
+            if (timer < 0 && plantStage < plantStages.Length - 1)
             {
-                timer = cropToPlant.data.timeBtwStage;
+                timer = timeBtwStage;
                 plantStage++;
                 UpdatePlant();
             }
-            /*else if (plantStage == cropToPlant.data.plantStages.Length - 1)
+            else if (plantStage == plantStages.Length - 1)
             {
                 chicken.gameObject.SetActive(true);
-            }*/
+            }
         }
     }
     private void OnMouseDown()
     {
-        inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);
-        inventoryManager = GetComponent<InventoryManager>();
-        cropToPlant = GameManager.instance.cropManager.GetCropByName(
-            inventory.slots[UI_Manager.draggedSlot.slotID].itemName);
-        Debug.Log(inventory );
-        Debug.Log(cropToPlant);
-        if (inventoryManager != null)
+        player = GameManager.instance.player;
+        /*inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);*/
+        
+        /*if (inventoryManager != null)
+        {*/
+        
+        Debug.Log(player.inventoryManager.toolbar.selectedSlot.isSeed);
+        if (player.inventoryManager.toolbar.selectedSlot.isSeed)
         {
-            if (inventoryManager.toolbar.selectedSlot.isSeed)
+            if (isPlanted)
             {
-                if (isPlanted)
+                if (plantStage == plantStages.Length - 1)
                 {
-                    if (plantStage == cropToPlant.data.plantStages.Length - 1)
-                    {
-                        Harvest();
-                    }
-                }
-                else
-                {
-                    Plant();
+                    Harvest();
                 }
             }
+            else
+            {
+                Plant();
+            }
         }
+        /*}*/
     }
     private void Plant()
     {
         isPlanted = true;
-        cropToPlant.data.plant.gameObject.SetActive(true);
+        plant.gameObject.SetActive(true);
     }
 
     private void Harvest()
@@ -73,13 +81,14 @@ public class Plantable : MonoBehaviour
         isPlanted = false;
         plantStage = 0;
         UpdatePlant();
-        timer = cropToPlant.data.timeBtwStage;
-        cropToPlant.data.plant.gameObject.SetActive(false);
-        /*GameManager.instance.player.DropItem(potatoeSeedPack, 3);*/
+        timer = timeBtwStage;
+        plant.gameObject.SetActive(false);
+        GameManager.instance.player.DropItem(potatoeSeedPack, 3);
+        chicken.gameObject.SetActive(true);
     }
 
     void UpdatePlant()
     {
-        cropToPlant.data.plant.sprite = cropToPlant.data.plantStages[plantStage];
+        plant.sprite = plantStages[plantStage];
     }
 }

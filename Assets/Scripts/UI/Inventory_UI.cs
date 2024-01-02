@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Inventory_UI : MonoBehaviour
 {
 
-    
+
     public string inventoryName;
     public List<Slot_UI> slots= new List<Slot_UI>();
 
@@ -80,7 +80,7 @@ public class Inventory_UI : MonoBehaviour
         UI_Manager.draggegdIcon = Instantiate(UI_Manager.draggedSlot.itemIcon);
         UI_Manager.draggegdIcon.transform.SetParent(canvas.transform);
         UI_Manager.draggegdIcon.raycastTarget = false;
-        UI_Manager.draggegdIcon.rectTransform.sizeDelta = new Vector2(50, 50);
+        UI_Manager.draggegdIcon.rectTransform.sizeDelta = new Vector2(75, 75);
         MoveToMousePosition(UI_Manager.draggegdIcon.gameObject);
         
     }

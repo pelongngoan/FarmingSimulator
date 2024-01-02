@@ -14,3 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PurpleMushroom
   icon: {fileID: 555209929, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+  isCrop: 0
+  crop:
+    cropName: CropName
+    icon: {fileID: 0}
+    plant: {fileID: 0}
+    plantStages: []
+    timeBtwStage: 0
+    dropData: {fileID: 0}

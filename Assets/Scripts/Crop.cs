@@ -1,14 +1,32 @@
+// Crop.cs
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    public CropData data;
-    //Rigidbody2D is set up in Awake so you can hide it in unity
-    [HideInInspector] public Rigidbody2D rb2d;
-    private void Awake()
+    public int growthStages = 3;
+    public float timeToHarvest = 10f;
+    public Item yieldItem;
+
+    private int currentStage = 0;
+
+    private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        StartCoroutine(Grow());
+    }
+
+    private IEnumerator Grow()
+    {
+        while (currentStage < growthStages)
+        {
+            yield return new WaitForSeconds(timeToHarvest / growthStages);
+            // Update crop appearance or behavior for each growth stage
+            currentStage++;
+        }
+
+        // The crop is fully grown, yield the item
+        yieldItem = Instantiate(yieldItem);
+        yieldItem.transform.position = transform.position;
+        Destroy(gameObject);
     }
 }

@@ -31,6 +31,10 @@ public class Inventory
                 return false;
             }
         }
+        public Sprite ItemIcon
+        {
+            get { return icon; }
+        }
         //See if the item can be added
         public bool CanAddItem(string itemName)
         {
@@ -44,7 +48,7 @@ public class Inventory
         public void AddItem(Item item)
         {
             this.itemName = item.data.itemName;
-            this.isSeed = item.data.isCrop;
+            this.isSeed = item.data.isSeed;
             this.icon = item.data.icon;
             count++;
         }
