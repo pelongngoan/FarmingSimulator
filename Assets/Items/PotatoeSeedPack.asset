@@ -14,4 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PotatoeSeedPack
   icon: {fileID: -590860366, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
-  isCrop: 1
+  isSeed: 1
+  crop:
+    cropName: CropName
+    icon: {fileID: 0}
+    plant: {fileID: 0}
+    plantStages: []
+    timeBtwStage: 0
+    dropData: {fileID: 0}

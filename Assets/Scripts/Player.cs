@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
+using static UnityEngine.UI.InputField;
 
 public class Player : MonoBehaviour
 {
@@ -34,27 +35,23 @@ public class Player : MonoBehaviour
             {
                 Vector3Int position = new Vector3Int((int)Math.Floor(transform.position.x),
                     (int)Math.Floor(transform.position.y-0.5), 0);
-
+                
                 string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
+
                     if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
-                        tileManager.SetInteracted(position);
+                        tileManager.SetPlowedTile(position);
                     }
-                    Debug.Log(inventoryManager.toolbar.selectedSlot.isSeed);
-                    /*if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.isSeed == true)
+                    if (tileName == "Summer_Plowed" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
                     {
-                        Debug.Log("true");
-                        *//*fruit.GetComponent<SpriteRenderer>().sprite = plant;*//*
-                        Instantiate(fruit, position, Quaternion.identity);
+                        Instantiate(fruit, position, Quaternion.identity);  
+                    }
+                   /* if (tileName == "PlowedTile" && inventoryManager.toolbar.selectedSlot.isSeed)
+                    {
+                        tileManager.PlantSeed(position, inventoryManager.toolbar.selectedSlot.ItemIcon);
                     }*/
-                    if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
-                    {
-                        Debug.Log("true");
-                        /*fruit.GetComponent<SpriteRenderer>().sprite = plant;*/
-                        Instantiate(fruit, position, Quaternion.identity);
-                    }
 
                 }
             }
