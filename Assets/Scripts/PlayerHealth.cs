@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
             healthBar.value = Mathf.Max(healthBar.value, 0f);
             curHealth = healthBar.value;
         }
-        else
+        /*else
         {
             StartCoroutine(WaitAndLoadScene());
         }
@@ -48,6 +48,7 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene(2);
+    }*/
     }
     private void Update()
     {

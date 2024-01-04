@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public InventoryManager inventoryManager;
 
     private TileManager tileManager;
+    private Animator animator;
+    private AudioManager audioManager;
 
     public Sprite plant;
 
@@ -19,11 +21,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         tileManager = GameManager.instance.tileManager;
+        animator = gameObject.GetComponentInChildren<Animator>();
+
     }
 
     private void Awake()
     {
         inventoryManager = GetComponent<InventoryManager>();
+        audioManager= GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
     }
     //Change the tile to interactable
@@ -43,15 +48,23 @@ public class Player : MonoBehaviour
                     if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
                         tileManager.SetPlowedTile(position);
+                        animator.SetTrigger("isPlowing");
+                        audioManager.PlaySFX(audioManager.dighoeClip);
+
+
                     }
                     if (tileName == "Summer_Plowed" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
                     {
-                        Instantiate(fruit, position, Quaternion.identity);  
+                        Instantiate(fruit, position, Quaternion.identity);
+                        animator.SetTrigger("isWatering");
+                        audioManager.PlaySFX(audioManager.wateringClip);
+
+
                     }
-                   /* if (tileName == "PlowedTile" && inventoryManager.toolbar.selectedSlot.isSeed)
-                    {
-                        tileManager.PlantSeed(position, inventoryManager.toolbar.selectedSlot.ItemIcon);
-                    }*/
+                    /* if (tileName == "PlowedTile" && inventoryManager.toolbar.selectedSlot.isSeed)
+                     {
+                         tileManager.PlantSeed(position, inventoryManager.toolbar.selectedSlot.ItemIcon);
+                     }*/
 
                 }
             }
@@ -72,10 +85,13 @@ public class Player : MonoBehaviour
                     if (tileName == "Basic Grass Biom things 1_1" && inventoryManager.toolbar.selectedSlot.itemName == "Axe")
                     {
                         tileManager.SetTreeInteracted(position);
+                        animator.SetTrigger("isCutting");
+                        audioManager.PlaySFX(audioManager.cutTreeClip);
                     }
                     if (tileName == "Basic Grass Biom things 1_1" && inventoryManager.toolbar.selectedSlot.itemName == "PotatoeSeedPack")
                     {
                         tileManager.SetTreeInteracted(position);
+
                     }
                 }
             }
@@ -87,10 +103,10 @@ public class Player : MonoBehaviour
     {
         Vector3 spawnLocation = transform.position;
        
-        Vector3 spawOffset = UnityEngine.Random.insideUnitCircle*1.5f;
+        Vector3 spawOffset = UnityEngine.Random.insideUnitCircle*2.5f;
 
         Item droppedItem = Instantiate(item,spawnLocation+spawOffset,Quaternion.identity);
-        droppedItem.rb2d.AddForce(spawOffset*2f,ForceMode2D.Impulse);
+        //droppedItem.rb2d.AddForce(spawOffset*2f,ForceMode2D.Impulse);
     }
 
     public void DropItem(Item item, int numToDrop)
