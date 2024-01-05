@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     public GameObject inventoryPanel;
+    public GameObject settingPanel;
     public Dictionary<string, Inventory_UI> inventoryUIByName = new Dictionary<string, Inventory_UI>();
     public List<Inventory_UI> inventoryUIs;
     public static Slot_UI draggedSlot;
@@ -21,6 +22,10 @@ public class UI_Manager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Tab)|| Input.GetKeyDown(KeyCode.B))
         {
             ToggleInventoryUI();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftAlt) )
+        {
+            ToggleSettingUI();
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -44,6 +49,21 @@ public class UI_Manager : MonoBehaviour
             else
             {
                 inventoryPanel.SetActive(false);
+            }
+        }
+    }
+    public void ToggleSettingUI()
+    {
+        if (settingPanel != null)
+        {
+            if (!settingPanel.activeSelf)
+            {
+                settingPanel.SetActive(true);
+                
+            }
+            else
+            {
+                settingPanel.SetActive(false);
             }
         }
     }

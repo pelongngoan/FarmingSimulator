@@ -12,8 +12,9 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tile wateredTile;
     [SerializeField] private Tile treeTile;
     [SerializeField] private Item treeLog;
+    [SerializeField] public TileBase test;
     public SpriteRenderer plant;
-
+    [SerializeField] public List<TileBase> plowableTiles;
     //On start set the interactbable map to  be hidden
     void Start()
     {
@@ -85,6 +86,7 @@ public class TileManager : MonoBehaviour
         }
         return "";
     }
+    
     public void PlantSeed(Vector3Int position, Tile seedTile)
     {
         if (interactableMap != null)

@@ -26,7 +26,7 @@ public class MapGenerator : MonoBehaviour
     public int octaves;
     public float lacunarity;
     public int seed;
-    Vector2 offSet;
+    public Vector2 offSet;
     public bool useFallOff;
     float[,] falloffMap;
 
@@ -68,9 +68,9 @@ public class MapGenerator : MonoBehaviour
         }
     }
     void Start() {
-        //GenerateBaseMapData();
+        DrawMapInEditor();
         falloffMap = FallOffGenerator.GenerateFallOffMap(mapWidth);
-        SpawnPlayer();
+        //SpawnPlayer();
         System.Random random = new System.Random(); 
         treeGenerator.points = PoissonDiscSampling.GeneratePoints(tileMap.cellSize.x * Mathf.Sqrt(2)*treeGenerator.radius,  mapWidth , mapHeight,treeGenerator.density);
 		if (treeGenerator.points != null) {
@@ -88,8 +88,9 @@ public class MapGenerator : MonoBehaviour
             System.Random spawnPRNG  = new System.Random(); 
             int v3PosX = spawnPRNG.Next(0,mapWidth);
             int v3PosY = spawnPRNG.Next(0,mapHeight);
-            Vector3Int pos = new Vector3Int(v3PosX,v3PosY);
-            TileBase tb = tileMap.GetTile(pos);
+            //Vector3Int pos = new Vector3Int(v3PosX,v3PosY);
+            Vector3Int pos = new Vector3Int(mapHeight/2,mapWidth/2);
+            //TileBase tb = tileMap.GetTile(pos);
             if (SpawnRule(pos)) {
                 Instantiate(treeGenerator.player,pos,treeGenerator.playerPlaceHolder.rotation,treeGenerator.playerPlaceHolder);
                 treeGenerator.player.AddComponent<CameraFollow>();
@@ -125,7 +126,7 @@ public class MapGenerator : MonoBehaviour
             lacunarity,
             offSet
             );
-             for (int y =0; y < mapHeight; y++) {
+             for (int y = 0; y < mapHeight; y++) {
                 for (int x = 0; x < mapWidth; x++) {
                     if (useFallOff) {
                         noiseMap[x,y] = Mathf.Clamp01(noiseMap[x,y] - falloffMap[x,y]);
@@ -142,6 +143,7 @@ public class MapGenerator : MonoBehaviour
                     }
                 }         
             }
+
         return new MapData(noiseMap);
     }
         void OnValidate() {
