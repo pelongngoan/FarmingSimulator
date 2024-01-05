@@ -9,22 +9,16 @@ public class Player : MonoBehaviour
 {
     // Inventory with number of slot
     public InventoryManager inventoryManager;
-
     private TileManager tileManager;
     private Animator animator;
     private AudioManager audioManager;
-
     public Sprite plant;
-
     public GameObject fruit;
-
     private void Start()
     {
         tileManager = GameManager.instance.tileManager;
         animator = gameObject.GetComponentInChildren<Animator>();
-
     }
-
     private void Awake()
     {
         inventoryManager = GetComponent<InventoryManager>();
@@ -44,28 +38,23 @@ public class Player : MonoBehaviour
                 string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
-
                     if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
                         tileManager.SetPlowedTile(position);
                         animator.SetTrigger("isPlowing");
                         audioManager.PlaySFX(audioManager.dighoeClip);
-
-
+                        /*inventoryManager.toolbar.selectedSlot.*/
                     }
                     if (tileName == "Summer_Plowed" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
                     {
                         Instantiate(fruit, position, Quaternion.identity);
                         animator.SetTrigger("isWatering");
                         audioManager.PlaySFX(audioManager.wateringClip);
-
-
                     }
                     /* if (tileName == "PlowedTile" && inventoryManager.toolbar.selectedSlot.isSeed)
                      {
                          tileManager.PlantSeed(position, inventoryManager.toolbar.selectedSlot.ItemIcon);
                      }*/
-
                 }
             }
         }
@@ -76,10 +65,7 @@ public class Player : MonoBehaviour
             {
                 Vector3Int position = new Vector3Int((int)Math.Floor(worldPoint.x),
                     (int)Math.Floor(worldPoint.y), 0);
-
                 string tileName = tileManager.GetTileName(position);
-                
-
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
                     if (tileName == "Basic Grass Biom things 1_1" && inventoryManager.toolbar.selectedSlot.itemName == "Axe")

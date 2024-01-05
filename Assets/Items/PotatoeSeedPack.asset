@@ -16,9 +16,15 @@ MonoBehaviour:
   icon: {fileID: -590860366, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
   isSeed: 1
   crop:
-    cropName: CropName
+    cropName: Potatoe_Crop
     icon: {fileID: 0}
     plant: {fileID: 0}
-    plantStages: []
-    timeBtwStage: 0
+    plantStages:
+    - {fileID: 421128178, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: 500409605, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: -455336066, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: -1041664746, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: -1308966034, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: -180751899, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    timeBtwStage: 2
     dropData: {fileID: 0}

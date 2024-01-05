@@ -9,7 +9,6 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tilemap backgroundMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
-    [SerializeField] private Tile wateredTile;
     [SerializeField] private Tile treeTile;
     [SerializeField] private Item treeLog;
     public SpriteRenderer plant;
@@ -52,11 +51,11 @@ public class TileManager : MonoBehaviour
 
         interactableMap.SetTile(position, seedTile);
     }
-    public void SetWateredTile(Vector3Int position)
+    /*public void SetWateredTile(Vector3Int position)
     {
 
         interactableMap.SetTile(position, wateredTile);
-    }
+    }*/
 
     //Set the postion stand on to be interactable tile
     public void SetInteracted(Vector3Int position)
@@ -94,7 +93,7 @@ public class TileManager : MonoBehaviour
             // Instantiate a Crop object at the planted position
             GameObject cropObject = new GameObject("Crop");
             cropObject.transform.position = interactableMap.GetCellCenterWorld(position);
-            cropObject.AddComponent<Crop>();
+            
         }
     }
 }
