@@ -16,9 +16,14 @@ MonoBehaviour:
   icon: {fileID: 157025947, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
   isSeed: 1
   crop:
-    cropName: CropName
+    cropName: Tomatoe_Crop
     icon: {fileID: 0}
     plant: {fileID: 0}
-    plantStages: []
-    timeBtwStage: 0
-    dropData: {fileID: 0}
+    plantStages:
+    - {fileID: -20854439, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: 886921335, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: 2101447572, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: -1388407397, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: 730289030, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    - {fileID: -3245166, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+    timeBtwStage: 5

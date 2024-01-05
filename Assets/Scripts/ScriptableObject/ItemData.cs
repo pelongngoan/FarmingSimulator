@@ -8,7 +8,7 @@ public class ItemData : ScriptableObject
     public string itemName = "Item Name";
     public Sprite icon;
     public bool isSeed = false;
-   /* public CropData crop;
+    public CropData crop;
     public ItemData(string itemName, Sprite icon, bool isSeed, CropData crop = null)
     {
         this.itemName = itemName;
@@ -27,9 +27,9 @@ public class ItemData : ScriptableObject
                 this.crop = crop;
             }
         }
-    }*/
+    }
 }
-/*[System.Serializable]
+[System.Serializable]
 public class CropData
 {
     public string cropName = "CropName";
@@ -37,5 +37,4 @@ public class CropData
     public SpriteRenderer plant;
     public Sprite[] plantStages;
     public float timeBtwStage;
-    [SerializeField] private Item dropData;
-}*/
+}

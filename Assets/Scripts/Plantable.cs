@@ -11,11 +11,12 @@ public class Plantable : MonoBehaviour
     public Sprite icon;
     public SpriteRenderer chicken;
     public SpriteRenderer plant;
-    public Sprite[] plantStages;
-    public float timeBtwStage = 2f;
+    private Sprite[] plantStages;
+    /*public float timeBtwStage = 2f*/
     Player player;
-    public Item potatoeSeedPack;
-    [SerializeField] private List<CropData> cropData;
+    /*public Item potatoeSeedPack;*/
+    public CropData crop;
+    /*[SerializeField] private List<CropData> cropData;*/
     /*private void Start()
     {
         inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);
@@ -23,7 +24,7 @@ public class Plantable : MonoBehaviour
     }*/
     /*private void Awake()
     {
-        inventoryManager = GetComponent<InventoryManager>();
+        crop =  
 
     }*/
 
@@ -34,7 +35,7 @@ public class Plantable : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0 && plantStage < plantStages.Length - 1)
             {
-                timer = timeBtwStage;
+                timer = crop.timeBtwStage;
                 plantStage++;
                 UpdatePlant();
             }
@@ -48,11 +49,14 @@ public class Plantable : MonoBehaviour
     {
         player = GameManager.instance.player;
         /*inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);*/
-        
+        crop = player.inventoryManager.toolbar.selectedSlot.crop;
+        plantStages = crop.plantStages;
         /*if (inventoryManager != null)
         {*/
-        
-        Debug.Log(player.inventoryManager.toolbar.selectedSlot.isSeed);
+        /*Sprite[] plantStage = crop.plantStages;*/
+        Debug.Log(crop.cropName);
+        Debug.Log(crop.timeBtwStage);
+
         if (player.inventoryManager.toolbar.selectedSlot.isSeed)
         {
             if (isPlanted)
@@ -81,10 +85,10 @@ public class Plantable : MonoBehaviour
         isPlanted = false;
         plantStage = 0;
         UpdatePlant();
-        timer = timeBtwStage;
+        timer = crop.timeBtwStage;
         plant.gameObject.SetActive(false);
-        GameManager.instance.player.DropItem(potatoeSeedPack, 3);
-        chicken.gameObject.SetActive(true);
+        /*GameManager.instance.player.DropItem(potatoeSeedPack, 3);*/
+        chicken.gameObject.SetActive(false);
     }
 
     void UpdatePlant()
