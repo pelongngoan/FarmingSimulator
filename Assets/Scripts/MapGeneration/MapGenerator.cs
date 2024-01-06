@@ -70,7 +70,7 @@ public class MapGenerator : MonoBehaviour
     void Start() {
         //GenerateBaseMapData();
         falloffMap = FallOffGenerator.GenerateFallOffMap(mapWidth);
-        SpawnPlayer();
+        /*SpawnPlayer();*/
         System.Random random = new System.Random(); 
         treeGenerator.points = PoissonDiscSampling.GeneratePoints(tileMap.cellSize.x * Mathf.Sqrt(2)*treeGenerator.radius,  mapWidth , mapHeight,treeGenerator.density);
 		if (treeGenerator.points != null) {

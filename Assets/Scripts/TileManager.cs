@@ -19,7 +19,7 @@ public class TileManager : MonoBehaviour
         foreach(var position in interactableMap.cellBounds.allPositionsWithin)
         {
             TileBase tile = interactableMap.GetTile(position);
-            if (tile != null && tile.name== "Interactable Visible")
+            if (tile != null && tile.name== "Tilled Dirt_7")
             {
                 interactableMap.SetTile(position, hiddenInteractableTile);
             }

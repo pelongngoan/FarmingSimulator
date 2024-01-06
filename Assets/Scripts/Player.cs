@@ -38,7 +38,9 @@ public class Player : MonoBehaviour
                 string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
-                    if (tileName == "Interactable" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
+                    Debug.Log(tileName);
+                    Debug.Log(inventoryManager.toolbar.selectedSlot.itemName);
+                    if (tileName == "Interactable Visible" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
                         tileManager.SetPlowedTile(position);
                         animator.SetTrigger("isPlowing");
