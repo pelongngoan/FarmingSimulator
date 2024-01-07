@@ -14,17 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PurpleBean_Collectable
   icon: {fileID: -1397474794, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-  isSeed: 1
+  healthBonus: 0
+  isSeed: 0
   eatable: 1
   crop:
     cropName: Bean_Crop
     icon: {fileID: 0}
     plant: {fileID: 0}
-    plantStages:
-    - {fileID: 1003160904, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 677893178, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 152191164, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: -1869818879, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 1938471100, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 524168183, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    timeBtwStage: 10
+    plantStages: []
+    timeBtwStage: 0

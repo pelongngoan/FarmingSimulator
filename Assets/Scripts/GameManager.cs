@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance!=this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        /*DontDestroyOnLoad(this.gameObject);*/
         itemManager = GetComponent<ItemManager>();
         tileManager = GetComponent<TileManager>();
         uiManager = GetComponent<UI_Manager>();

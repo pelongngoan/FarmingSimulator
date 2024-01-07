@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4967276274544227650}
   - component: {fileID: 4047519206377282398}
   - component: {fileID: 4294780877089789799}
-  - component: {fileID: 1348570109397620477}
   - component: {fileID: 9199136178877021664}
   m_Layer: 0
   m_Name: Tree_Cutable
@@ -160,20 +159,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1348570109397620477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3171301066757952440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 572a3c6d4848a794e9ef7bed0ca37dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 22e559b2fd1cce34081f9a09667376c3, type: 2}
-  rb2d: {fileID: 0}
 --- !u!114 &9199136178877021664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,10 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1346298002eb55d4c81509d6b7cfc07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noFruit: 1
+  smallTree: 0
   noFruitPlant: {fileID: -1461971940, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
   fruitPlant: {fileID: 634484501, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
   trunk: {fileID: -1937478869, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
   plant: {fileID: 4967276274544227650}
-  timeBtwStage: 15
   treeLog: {fileID: 7852435521992108346, guid: 0866a47544e270a43ac82a30a468bc16, type: 3}
-  playerIsClose: 0
+  apple: {fileID: 7241275745415239106, guid: f622d4648defe154c80cd5ed0ba6f727, type: 3}
+  numOfItem: 3

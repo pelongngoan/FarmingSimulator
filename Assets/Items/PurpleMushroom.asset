@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PurpleMushroom
   icon: {fileID: 555209929, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+  healthBonus: 5
   isSeed: 0
   eatable: 1
   crop:

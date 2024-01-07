@@ -4,7 +4,8 @@ using UnityEngine;
 public class DearRun : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public int gridSize = 10;
+    public float wanderRadius = 5f;
+    public float wanderTimer = 2f;
     public Animator animator;
 
     private void Start()
@@ -16,21 +17,21 @@ public class DearRun : MonoBehaviour
     {
         while (true)
         {
-            // Chọn một hướng di chuyển ngẫu nhiên
-            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+            // Chọn một hướng di chuyển ngẫu nhiên trong phạm vi của vùng di chuyển ngẫu nhiên
+            Vector2 randomDirection = Random.insideUnitCircle.normalized * wanderRadius;
 
             // Tính toán vị trí mới dựa trên hướng và tốc độ di chuyển
-            Vector2 newPosition = (Vector2)transform.position + randomDirection * moveSpeed;
+            Vector2 newPosition = (Vector2)transform.position + randomDirection;
 
-            // Giới hạn vị trí mới trong phạm vi grid
-            newPosition.x = Mathf.Clamp(newPosition.x, 0, gridSize - 1);
-            newPosition.y = Mathf.Clamp(newPosition.y, 0, gridSize - 1);
+            // Giới hạn vị trí mới trong vùng di chuyển ngẫu nhiên
+            newPosition.x = Mathf.Clamp(newPosition.x, transform.position.x - wanderRadius, transform.position.x + wanderRadius);
+            newPosition.y = Mathf.Clamp(newPosition.y, transform.position.y - wanderRadius, transform.position.y + wanderRadius);
 
             // Xác định góc quay dựa trên hướng di chuyển
             float targetRotationY = (newPosition.x < transform.position.x) ? -180f : 0f;
 
             // Kích hoạt animation chạy
-            animator.SetBool("running", true); 
+            animator.SetBool("running", true);
 
             // Di chuyển đối tượng đến vị trí mới
             while ((Vector2)transform.position != newPosition)
@@ -48,8 +49,7 @@ public class DearRun : MonoBehaviour
             animator.SetBool("running", false);
 
             // Chờ một khoảng thời gian ngẫu nhiên trước khi di chuyển tiếp
-            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            yield return new WaitForSeconds(Random.Range(1f, wanderTimer));
         }
     }
-
 }

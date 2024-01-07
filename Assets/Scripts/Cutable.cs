@@ -4,65 +4,73 @@ using UnityEngine;
 
 public class Cutable : MonoBehaviour
 {
-    bool noFruit = true;
+    public bool noFruit;
+    public bool smallTree;
     float timer;
     public Sprite noFruitPlant;
     public Sprite fruitPlant;
     public Sprite trunk;
     public SpriteRenderer plant;
-    public float timeBtwStage = 15f;
+    private float timeBtwStage = 30f;
     Player player;
     public Item treeLog;
-    private Animator animator;
-    private AudioManager audioManager;
+    public Item apple;
+    public int numOfItem;
     private bool playerIsClose;
 
     void Update()
     {
-        /*if (noFruit)
+        if (noFruit)
         {
             timer -= Time.deltaTime;
             if (timer < 0)
             {
                 timer = timeBtwStage;
-                UpdatePlant();
+                plant.sprite = fruitPlant;
+                noFruit = false;
             }
-            else if (plantStage == plantStages.Length - 1)
-            {
-                chicken.gameObject.SetActive(true);
-            }
-        }*/
+        }
         if (Input.GetKeyUp(KeyCode.Space) && playerIsClose)
         {
             player = GameManager.instance.player;
             if (player.inventoryManager.toolbar.selectedSlot.itemName == "Axe")
             {
                 plant.sprite = trunk;
-                Instantiate(treeLog, transform.position, Quaternion.identity);
+                if (!noFruit && !smallTree)
+                {
+                    for (int i = 0; i < numOfItem; i++)
+                    {
+                        Instantiate(treeLog, transform.position, Quaternion.identity);
+                        Instantiate(apple, transform.position, Quaternion.identity);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < numOfItem; i++)
+                    {
+                        Instantiate(treeLog, transform.position, Quaternion.identity);
+
+                    }
+                }
+                noFruit = true;
+            }
+            if (!smallTree)
+            {
+                if (!noFruit)
+                {
+                    plant.sprite = noFruitPlant;
+                    noFruit = true;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Instantiate(apple, transform.position + new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-0.5f, 0.5f), 0f), Quaternion.identity);
+                    }
+                }
             }
         }
     }
     private void Start()
     {
-        animator = gameObject.GetComponentInChildren<Animator>();
-    }
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
-    }
-    private void OnMouseDown()
-    {
-        player = GameManager.instance.player;
-
-        if (player.inventoryManager.toolbar.selectedSlot.itemName == "Axe")
-        {
-            /*Destroy(this.gameObject);*/
-            /*animator.SetTrigger("isCutting");
-            audioManager.PlaySFX(audioManager.cutTreeClip);*/
-            plant.sprite = trunk;
-            Instantiate(treeLog, transform.position, Quaternion.identity);
-        }
+        timer = timeBtwStage;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -78,17 +86,5 @@ public class Cutable : MonoBehaviour
         {
             playerIsClose = false;
         }
-    }
-
-    private void Harvest()
-    {
-        noFruit = true;
-        timer = timeBtwStage;
-        plant.sprite = noFruitPlant;
-    }
-
-    void UpdatePlant()
-    {
-        plant.sprite = fruitPlant;
     }
 }

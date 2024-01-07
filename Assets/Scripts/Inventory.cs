@@ -11,6 +11,7 @@ public class Inventory
         public string itemName;
         public bool isSeed;
         public bool eatable;
+        public float healthBonus;
         public int count;
         public int maxAllowed;
         public Sprite icon;
@@ -51,16 +52,18 @@ public class Inventory
         {
             this.itemName = item.data.itemName;
             this.isSeed = item.data.isSeed;
+            this.healthBonus = item.data.healthBonus;
             this.icon = item.data.icon;
             this.eatable = item.data.eatable;
             this.crop = item.data.crop;
             count++;
         }
 
-        public void AddItem(string itemName, Sprite icon, int maxAllowed, bool eatable, bool isSeed, CropData crop)
+        public void AddItem(string itemName, Sprite icon, float healthBonus, int maxAllowed, bool eatable, bool isSeed, CropData crop)
         {
             this.itemName = itemName;
             this.icon = icon;
+            this.healthBonus = healthBonus;
             this.eatable = eatable;
             this.isSeed = isSeed;
             this.crop = crop;
@@ -78,6 +81,10 @@ public class Inventory
                 {
                     icon = null;
                     itemName = "";
+                    isSeed = false;
+                    healthBonus = 0;
+                    eatable = false;
+                    crop = null;
                 }
             }
         }
@@ -137,7 +144,7 @@ public class Inventory
         {
             for (int i = 0; i < numToMove; i++)
             {
-                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed, fromSlot.eatable, fromSlot.isSeed, fromSlot.crop);
+                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.healthBonus, fromSlot.maxAllowed, fromSlot.eatable, fromSlot.isSeed, fromSlot.crop);
                 fromSlot.RemoveItem();
             }
         }

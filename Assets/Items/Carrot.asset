@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Carrot
   icon: {fileID: -10707874, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
+  healthBonus: 10
   isSeed: 0
   eatable: 1
   crop:

@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     private AudioManager audioManager;
     public Sprite plant;
     public GameObject wateredDirt;
-    private Inventory inventory;
+    PlayerHealth playerHealth;
+    public Inventory_UI inventory_UI;
     public bool closeToTree;
     public bool closeToPlowedDirt;
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     }
     private void Awake()
     {
+        playerHealth = FindObjectOfType<PlayerHealth>();
         inventoryManager = GetComponent<InventoryManager>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
@@ -44,12 +46,12 @@ public class Player : MonoBehaviour
                         && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
                         Instantiate(wateredDirt, position, Quaternion.identity);
-                        /*tileManager.SetPlowedTile(position);*/
+                        tileManager.SetPlowedTile(position);
                         animator.SetTrigger("isPlowing");
                         audioManager.PlaySFX(audioManager.dighoeClip);
                         /*inventoryManager.toolbar.selectedSlot.*/
                     }
-                    if ( closeToPlowedDirt && inventoryManager.toolbar.selectedSlot.itemName == "WaterBottle")
+                    if (closeToPlowedDirt && inventoryManager.toolbar.selectedSlot.itemName == "WaterBottle")
                     {
                         /*Instantiate(wateredDirt, position, Quaternion.identity);*/
                         animator.SetTrigger("isWatering");
@@ -57,19 +59,16 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            if (inventoryManager.toolbar.selectedSlot.eatable)
+            if (inventoryManager.toolbar.selectedSlot.eatable && playerHealth.healthBar.value < playerHealth.maxHealth)
             {
-                Debug.Log("Eatable"); 
-                /*Instantiate(wateredDirt, position, Quaternion.identity);
-                animator.SetTrigger("isWatering");*/
+
                 audioManager.PlaySFX(audioManager.wateringClip);
-                /*inventoryManager.toolbar.slots.Remove;*/
                 inventoryManager.toolbar.selectedSlot.RemoveItem();
-                Debug.Log(inventoryManager.toolbar.selectedSlot);
-                /*inventoryManager.toolbar.Remove();*/
-                /*inventory.Remove(UI_Manager.draggedSlot.slotID, inventory.slots[UI_Manager.draggedSlot.slotID].count);*/
+                playerHealth.healthBar.value = playerHealth.healthBar.value + inventoryManager.toolbar.selectedSlot.healthBonus;
+                playerHealth.curHealth = playerHealth.healthBar.value;
+                GameManager.instance.uiManager.RefreshInventoryUI("Toolbar");
             }
-            if (inventoryManager.toolbar.selectedSlot.itemName=="Axe" && closeToTree)
+            if (inventoryManager.toolbar.selectedSlot.itemName == "Axe" && closeToTree)
             {
                 animator.SetTrigger("isCutting");
                 audioManager.PlaySFX(audioManager.cutTreeClip);
@@ -134,7 +133,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+
         if (other.CompareTag("NoFruit_AppleTree"))
         {
             closeToTree = true;

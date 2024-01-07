@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773ef74190949344483eb3b1231729ab, type: 3}
   m_Name: PotatoeSeedPack
   m_EditorClassIdentifier: 
-  itemName: PotatoeSeedPack
+  itemName: Potatoe_SeedPack
   icon: {fileID: -590860366, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  healthBonus: 0
   isSeed: 1
+  eatable: 0
   crop:
     cropName: Potatoe_Crop
     icon: {fileID: 0}
@@ -27,4 +29,3 @@ MonoBehaviour:
     - {fileID: -1308966034, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
     - {fileID: -180751899, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
     timeBtwStage: 2
-    dropData: {fileID: 0}

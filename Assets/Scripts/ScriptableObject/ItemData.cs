@@ -7,13 +7,15 @@ public class ItemData : ScriptableObject
 {
     public string itemName = "Item Name";
     public Sprite icon;
+    public float healthBonus ;
     public bool isSeed = false;
     public bool eatable = false;
     public CropData crop;
-    public ItemData(string itemName, Sprite icon, bool eatable, bool isSeed, CropData crop = null)
+    public ItemData(string itemName,float healthBonus, Sprite icon, bool eatable, bool isSeed, CropData crop = null)
     {
         this.itemName = itemName;
         this.icon = icon;
+        this.healthBonus = healthBonus; 
         this.eatable = eatable;
         this.isSeed = isSeed;
 

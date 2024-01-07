@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Potatoe
   icon: {fileID: -1702682330, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  healthBonus: 15
+  isSeed: 0
+  eatable: 1
+  crop:
+    cropName: CropName
+    icon: {fileID: 0}
+    plant: {fileID: 0}
+    plantStages: []
+    timeBtwStage: 0

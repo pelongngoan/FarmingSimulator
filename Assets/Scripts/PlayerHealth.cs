@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // Decrease health 
-        DecreaseHealth(10f);
+        DecreaseHealth(1f);
 
         StartCoroutine(AutoDecreaseHealth());
     }
@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
             healthBar.value = Mathf.Max(healthBar.value, 0f);
             curHealth = healthBar.value;
         }
-        /*else
+        else
         {
             StartCoroutine(WaitAndLoadScene());
         }
@@ -47,9 +47,9 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene(2);
-    }*/
+        SceneManager.LoadScene(0);
     }
+    
     private void Update()
     {
         healthText.text = curHealth.ToString() + "%";

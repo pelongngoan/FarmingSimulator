@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773ef74190949344483eb3b1231729ab, type: 3}
   m_Name: TomatoSeedPack
   m_EditorClassIdentifier: 
-  itemName: TomatoSeedPack
+  itemName: Tomato_SeedPack
   icon: {fileID: 157025947, guid: 3b6436036c4e2da4ca10255e9c68f660, type: 3}
+  healthBonus: 0
   isSeed: 1
+  eatable: 0
   crop:
     cropName: Tomatoe_Crop
     icon: {fileID: 0}

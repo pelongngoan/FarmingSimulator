@@ -7,15 +7,14 @@ public class MenuFunc : MonoBehaviour
 {
     public void Playgame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void Quit()
     {
-        /*UnityEditor.EditorApplication.isPlaying = false;*/
         Application.Quit();
     }
     public void OutMenu()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
 }

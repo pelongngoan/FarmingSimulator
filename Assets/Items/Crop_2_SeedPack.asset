@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Crop_2_SeedPack
   icon: {fileID: 892348912, guid: 5e6f4c2160fb2d7419d7de9a48777c6d, type: 3}
+  healthBonus: 0
   isSeed: 1
   eatable: 0
   crop:
