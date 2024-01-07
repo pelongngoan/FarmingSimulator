@@ -3,6 +3,7 @@ using UnityEngine;
 public class Plantable : MonoBehaviour
 {
     bool isWatered = false;
+    bool seedPlanted = false;
     int plantStage = 0;
     float timer;
     public SpriteRenderer chicken;
@@ -52,10 +53,11 @@ public class Plantable : MonoBehaviour
                     {
                         crop = player.inventoryManager.toolbar.selectedSlot.crop;
                         plantStages = crop.plantStages;
-                        itemToDrop = GameManager.instance.itemManager.GetItemByName(player.inventoryManager.toolbar.selectedSlot.itemName);
+                        Debug.Log(player.inventoryManager.toolbar.selectedSlot.itemName.Split("_")[0]);
+                        itemToDrop = GameManager.instance.itemManager.GetItemByName(player.inventoryManager.toolbar.selectedSlot.itemName.Split("_")[0]);
                         Plant();
                     }
-                    if (player.inventoryManager.toolbar.selectedSlot.itemName == "WaterBottle")
+                    if (player.inventoryManager.toolbar.selectedSlot.itemName == "WaterBottle" && seedPlanted)
                     {
                         Water();
                     }
@@ -66,6 +68,7 @@ public class Plantable : MonoBehaviour
     private void Plant()
     {
         plant.gameObject.SetActive(true);
+        seedPlanted = true;
         plant.sprite = plantStages[plantStage];
     }
     private void Water()

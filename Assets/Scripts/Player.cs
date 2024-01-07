@@ -61,11 +61,11 @@ public class Player : MonoBehaviour
             }
             if (inventoryManager.toolbar.selectedSlot.eatable && playerHealth.healthBar.value < playerHealth.maxHealth)
             {
-
                 audioManager.PlaySFX(audioManager.wateringClip);
-                inventoryManager.toolbar.selectedSlot.RemoveItem();
+                Debug.Log(inventoryManager.toolbar.selectedSlot.healthBonus);
                 playerHealth.healthBar.value = playerHealth.healthBar.value + inventoryManager.toolbar.selectedSlot.healthBonus;
                 playerHealth.curHealth = playerHealth.healthBar.value;
+                inventoryManager.toolbar.selectedSlot.RemoveItem();
                 GameManager.instance.uiManager.RefreshInventoryUI("Toolbar");
             }
             if (inventoryManager.toolbar.selectedSlot.itemName == "Axe" && closeToTree)

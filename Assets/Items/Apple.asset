@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Apple
   icon: {fileID: -1465367627, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
   healthBonus: 20
-  isSeed: 1
+  isSeed: 0
   eatable: 1
   crop:
     cropName: Apple_Tree
