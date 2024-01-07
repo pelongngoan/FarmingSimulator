@@ -65,6 +65,7 @@ public class Inventory_UI : MonoBehaviour
             }
             else
             {
+                Debug.Log("Drop");
                 GameManager.instance.player.DropItem(itemToDrop, inventory.slots[UI_Manager.draggedSlot.slotID].count);
                 inventory.Remove(UI_Manager.draggedSlot.slotID, inventory.slots[UI_Manager.draggedSlot.slotID].count);
                 Refresh();
@@ -80,7 +81,7 @@ public class Inventory_UI : MonoBehaviour
         UI_Manager.draggegdIcon = Instantiate(UI_Manager.draggedSlot.itemIcon);
         UI_Manager.draggegdIcon.transform.SetParent(canvas.transform);
         UI_Manager.draggegdIcon.raycastTarget = false;
-        UI_Manager.draggegdIcon.rectTransform.sizeDelta = new Vector2(80, 80);
+        UI_Manager.draggegdIcon.rectTransform.sizeDelta = new Vector2(50,50);
         MoveToMousePosition(UI_Manager.draggegdIcon.gameObject);
         
     }

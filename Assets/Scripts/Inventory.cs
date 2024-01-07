@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public class Inventory
@@ -12,10 +10,12 @@ public class Inventory
     {
         public string itemName;
         public bool isSeed;
+        public bool eatable;
         public int count;
         public int maxAllowed;
         public Sprite icon;
         public CropData crop;
+        /*public CropData crop;*/
         public Slot()
         {
             itemName = "";
@@ -52,14 +52,16 @@ public class Inventory
             this.itemName = item.data.itemName;
             this.isSeed = item.data.isSeed;
             this.icon = item.data.icon;
+            this.eatable = item.data.eatable;
             this.crop = item.data.crop;
             count++;
         }
 
-        public void AddItem(string itemName, Sprite icon, int maxAllowed, bool isSeed,CropData crop)
+        public void AddItem(string itemName, Sprite icon, int maxAllowed, bool eatable, bool isSeed, CropData crop)
         {
             this.itemName = itemName;
             this.icon = icon;
+            this.eatable = eatable;
             this.isSeed = isSeed;
             this.crop = crop;
 
@@ -135,7 +137,7 @@ public class Inventory
         {
             for (int i = 0; i < numToMove; i++)
             {
-                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed, fromSlot.isSeed,fromSlot.crop);
+                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed, fromSlot.eatable, fromSlot.isSeed, fromSlot.crop);
                 fromSlot.RemoveItem();
             }
         }

@@ -1,36 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Plantable : MonoBehaviour
 {
-    bool isPlanted = false;
+    bool isWatered = false;
     int plantStage = 0;
     float timer;
-    public Sprite icon;
     public SpriteRenderer chicken;
     public SpriteRenderer plant;
-    private Sprite[] plantStages;
-    /*public float timeBtwStage = 2f*/
+    public SpriteRenderer plowedDirt;
+    public Sprite wateredDirt;
+    public Sprite unWateredDirt;
+    public Sprite[] plantStages;
     Player player;
-    /*public Item potatoeSeedPack;*/
     public CropData crop;
-    /*[SerializeField] private List<CropData> cropData;*/
-    /*private void Start()
-    {
-        inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);
+    public Item itemToDrop;
+    public bool playerIsClose;
 
-    }*/
-    /*private void Awake()
-    {
-        crop =  
-
-    }*/
 
     void Update()
     {
-        if (isPlanted)
+        if (isWatered)
         {
             timer -= Time.deltaTime;
             if (timer < 0 && plantStage < plantStages.Length - 1)
@@ -44,22 +33,11 @@ public class Plantable : MonoBehaviour
                 chicken.gameObject.SetActive(true);
             }
         }
-    }
-    private void OnMouseDown()
-    {
-        player = GameManager.instance.player;
-        /*inventory = GameManager.instance.player.inventoryManager.GetInventoryByName(inventoryName);*/
-        crop = player.inventoryManager.toolbar.selectedSlot.crop;
-        plantStages = crop.plantStages;
-        /*if (inventoryManager != null)
-        {*/
-        /*Sprite[] plantStage = crop.plantStages;*/
-        Debug.Log(crop.cropName);
-        Debug.Log(crop.timeBtwStage);
-
-        if (player.inventoryManager.toolbar.selectedSlot.isSeed)
+        if (Input.GetKeyDown(KeyCode.Space) && playerIsClose)
         {
-            if (isPlanted)
+            player = GameManager.instance.player;
+            
+            if (isWatered)
             {
                 if (plantStage == plantStages.Length - 1)
                 {
@@ -68,31 +46,66 @@ public class Plantable : MonoBehaviour
             }
             else
             {
-                Plant();
+                if (player.inventoryManager.toolbar.selectedSlot != null)
+                {
+                    if (player.inventoryManager.toolbar.selectedSlot.isSeed)
+                    {
+                        crop = player.inventoryManager.toolbar.selectedSlot.crop;
+                        plantStages = crop.plantStages;
+                        itemToDrop = GameManager.instance.itemManager.GetItemByName(player.inventoryManager.toolbar.selectedSlot.itemName);
+                        Plant();
+                    }
+                    if (player.inventoryManager.toolbar.selectedSlot.itemName == "WaterBottle")
+                    {
+                        Water();
+                    }
+                }
             }
         }
-        /*}*/
     }
     private void Plant()
     {
-        isPlanted = true;
         plant.gameObject.SetActive(true);
+        plant.sprite = plantStages[plantStage];
+    }
+    private void Water()
+    {
+        isWatered = true;
+        plowedDirt.sprite = wateredDirt;
+
     }
 
     private void Harvest()
     {
         /*chicken.gameObject.SetActive(false);*/
-        isPlanted = false;
+        isWatered = false;
         plantStage = 0;
         UpdatePlant();
         timer = crop.timeBtwStage;
         plant.gameObject.SetActive(false);
+        plowedDirt.sprite = unWateredDirt;
         /*GameManager.instance.player.DropItem(potatoeSeedPack, 3);*/
         chicken.gameObject.SetActive(false);
+        Instantiate(itemToDrop, transform.position, Quaternion.identity);
     }
 
     void UpdatePlant()
     {
         plant.sprite = plantStages[plantStage];
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsClose = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsClose = false;
+        }
     }
 }

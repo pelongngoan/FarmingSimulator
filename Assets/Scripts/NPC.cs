@@ -11,7 +11,7 @@ public class NPC : MonoBehaviour
     public TMP_Text dialogueText;
     public string[] dialogue;
     private int index;
-    public GameObject itemToDrop;
+    public Item itemToDrop;
     public float dropDistance = 2.0f;
 
 

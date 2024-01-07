@@ -1,14 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using JetBrains.Annotations;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {   
@@ -83,7 +76,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-    void SpawnPlayer() {
+    /*void SpawnPlayer() {
          for (int i = 0; i < tileBaseRegion.Length; i++) {
             System.Random spawnPRNG  = new System.Random(); 
             int v3PosX = spawnPRNG.Next(0,mapWidth);
@@ -96,7 +89,7 @@ public class MapGenerator : MonoBehaviour
                 break;
             }
          }
-    }
+    }*/
     bool SpawnRule(Vector3Int v3) {
         TileBase tb = tileMap.GetTile(v3);
         for (int i = 0; i < unspawnableTiles.Tiles.Length; i++) {

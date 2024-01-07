@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
-using static UnityEngine.UI.InputField;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +9,11 @@ public class Player : MonoBehaviour
     private Animator animator;
     private AudioManager audioManager;
     public Sprite plant;
-    public GameObject fruit;
+    public GameObject wateredDirt;
+    private Inventory inventory;
+    public bool closeToTree;
+    public bool closeToPlowedDirt;
+
     private void Start()
     {
         tileManager = GameManager.instance.tileManager;
@@ -22,56 +22,82 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         inventoryManager = GetComponent<InventoryManager>();
-        audioManager= GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
     }
     //Change the tile to interactable
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (tileManager != null)
             {
                 Vector3Int position = new Vector3Int((int)Math.Floor(transform.position.x),
-                    (int)Math.Floor(transform.position.y-0.5), 0);
-                
+                    (int)Math.Floor(transform.position.y - 0.5), 0);
+
                 string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
-                    Debug.Log(tileName);
-                    Debug.Log(inventoryManager.toolbar.selectedSlot.itemName);
-                    if (tileName == "Interactable Visible" && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
+                    if (
+                        /*tileName == "Interactable Visible" */
+                        (tileName == "Hills_11" || tileName == "Hills_10" || tileName == "Grass_5")
+                        && inventoryManager.toolbar.selectedSlot.itemName == "Hoe")
                     {
-                        tileManager.SetPlowedTile(position);
+                        Instantiate(wateredDirt, position, Quaternion.identity);
+                        /*tileManager.SetPlowedTile(position);*/
                         animator.SetTrigger("isPlowing");
                         audioManager.PlaySFX(audioManager.dighoeClip);
                         /*inventoryManager.toolbar.selectedSlot.*/
                     }
-                    if (tileName == "Summer_Plowed" && inventoryManager.toolbar.selectedSlot.itemName=="WaterBottle")
+                    if ( closeToPlowedDirt && inventoryManager.toolbar.selectedSlot.itemName == "WaterBottle")
                     {
-                        Instantiate(fruit, position, Quaternion.identity);
+                        /*Instantiate(wateredDirt, position, Quaternion.identity);*/
                         animator.SetTrigger("isWatering");
                         audioManager.PlaySFX(audioManager.wateringClip);
                     }
-                    /* if (tileName == "PlowedTile" && inventoryManager.toolbar.selectedSlot.isSeed)
-                     {
-                         tileManager.PlantSeed(position, inventoryManager.toolbar.selectedSlot.ItemIcon);
-                     }*/
                 }
             }
+            if (inventoryManager.toolbar.selectedSlot.eatable)
+            {
+                Debug.Log("Eatable"); 
+                /*Instantiate(wateredDirt, position, Quaternion.identity);
+                animator.SetTrigger("isWatering");*/
+                audioManager.PlaySFX(audioManager.wateringClip);
+                /*inventoryManager.toolbar.slots.Remove;*/
+                inventoryManager.toolbar.selectedSlot.RemoveItem();
+                Debug.Log(inventoryManager.toolbar.selectedSlot);
+                /*inventoryManager.toolbar.Remove();*/
+                /*inventory.Remove(UI_Manager.draggedSlot.slotID, inventory.slots[UI_Manager.draggedSlot.slotID].count);*/
+            }
+            if (inventoryManager.toolbar.selectedSlot.itemName=="Axe" && closeToTree)
+            {
+                animator.SetTrigger("isCutting");
+                audioManager.PlaySFX(audioManager.cutTreeClip);
+            }
         }
-        if (Input.GetMouseButtonDown(0))
+        /* if (Input.GetMouseButtonDown(1))
+         {
+             if (inventoryManager.toolbar.selectedSlot.eatable) 
+             {
+                 Debug.Log("true");
+             }
+
+         }*/
+        /*if (Input.GetMouseButtonDown(0))
         {
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(worldPoint.GetType());
             if (tileManager != null)
+
             {
                 Vector3Int position = new Vector3Int((int)Math.Floor(worldPoint.x),
                     (int)Math.Floor(worldPoint.y), 0);
-                string tileName = tileManager.GetTileName(position);
+                *//*string tileName = tileManager.GetTileName(position);
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
                     if (tileName == "Basic Grass Biom things 1_1" && inventoryManager.toolbar.selectedSlot.itemName == "Axe")
                     {
+
                         tileManager.SetTreeInteracted(position);
                         animator.SetTrigger("isCutting");
                         audioManager.PlaySFX(audioManager.cutTreeClip);
@@ -81,27 +107,52 @@ public class Player : MonoBehaviour
                         tileManager.SetTreeInteracted(position);
 
                     }
-                }
+                }*//*
+                
             }
-        }
+        }*/
     }
 
     //Drop Item to random location
     public void DropItem(Item item)
     {
         Vector3 spawnLocation = transform.position;
-       
-        Vector3 spawOffset = UnityEngine.Random.insideUnitCircle*2.5f;
 
-        Item droppedItem = Instantiate(item,spawnLocation+spawOffset,Quaternion.identity);
+        Vector3 spawOffset = UnityEngine.Random.insideUnitCircle * 2.5f;
+
+        Item droppedItem = Instantiate(item, spawnLocation + spawOffset, Quaternion.identity);
         //droppedItem.rb2d.AddForce(spawOffset*2f,ForceMode2D.Impulse);
     }
 
     public void DropItem(Item item, int numToDrop)
     {
-       for(int i =0; i< numToDrop; i++)
+        for (int i = 0; i < numToDrop; i++)
         {
             DropItem(item);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if (other.CompareTag("NoFruit_AppleTree"))
+        {
+            closeToTree = true;
+        }
+        if (other.CompareTag("PlowedDirt"))
+        {
+            closeToPlowedDirt = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("NoFruit_AppleTree"))
+        {
+            closeToTree = false;
+        }
+        if (other.CompareTag("PlowedDirt"))
+        {
+            closeToPlowedDirt = false;
         }
     }
 

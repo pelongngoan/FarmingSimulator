@@ -281,7 +281,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 123.17255, y: 17.743008, z: 60.503338, w: 9.425976}
+  m_margin: {x: 106.579895, y: 17.743008, z: 60.503338, w: 9.425976}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -380,6 +380,18 @@ MonoBehaviour:
   slotID: 0
   inventory:
     slots: []
+    selectedSlot:
+      itemName: 
+      isSeed: 0
+      count: 0
+      maxAllowed: 64
+      icon: {fileID: 0}
+      crop:
+        cropName: CropName
+        icon: {fileID: 0}
+        plant: {fileID: 0}
+        plantStages: []
+        timeBtwStage: 0
   itemIcon: {fileID: 4395625873956393388}
   quantityText: {fileID: 7820901847448623720}
   highlight: {fileID: 0}

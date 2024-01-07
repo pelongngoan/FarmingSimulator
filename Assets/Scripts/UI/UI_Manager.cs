@@ -8,9 +8,11 @@ public class UI_Manager : MonoBehaviour
 {
     public GameObject inventoryPanel;
     public GameObject settingPanel;
+    public GameObject infoPanel;
     public Dictionary<string, Inventory_UI> inventoryUIByName = new Dictionary<string, Inventory_UI>();
     public List<Inventory_UI> inventoryUIs;
     public static Slot_UI draggedSlot;
+
     public static Image draggegdIcon;
     public static bool dragSingle;
     private void Awake()
@@ -64,6 +66,21 @@ public class UI_Manager : MonoBehaviour
             else
             {
                 settingPanel.SetActive(false);
+            }
+        }
+    }
+    public void ToggleInfoUI()
+    {
+        if (infoPanel != null)
+        {
+            if (!infoPanel.activeSelf)
+            {
+                infoPanel.SetActive(true);
+
+            }
+            else
+            {
+                infoPanel.SetActive(false);
             }
         }
     }

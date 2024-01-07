@@ -550,8 +550,8 @@ TextureImporter:
         y: 97
         width: 14
         height: 8
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -799,9 +799,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 80
-        width: 31
-        height: 15
+        y: 81
+        width: 15
+        height: 13
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2453,6 +2453,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Fantasy Crops_111
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 81
+        width: 12
+        height: 13
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d5cb4eb70bca249b4460c73a2d77e7
+      internalID: -1665589297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2479,6 +2500,7 @@ TextureImporter:
       Fantasy Crops_109: 209784437
       Fantasy Crops_11: 1421173885
       Fantasy Crops_110: 2014395005
+      Fantasy Crops_111: -1665589297
       Fantasy Crops_12: 355162186
       Fantasy Crops_13: 684501423
       Fantasy Crops_14: 1003160904

@@ -14,4 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Apple
   icon: {fileID: -1465367627, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
-  isCrop: 0
+  isSeed: 1
+  eatable: 1
+  crop:
+    cropName: Apple_Tree
+    icon: {fileID: 0}
+    plant: {fileID: 0}
+    plantStages:
+    - {fileID: 1578806077, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+    - {fileID: -1937478869, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+    - {fileID: 1223584500, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+    - {fileID: -1461971940, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+    - {fileID: 634484501, guid: 90f0f2b52eaedc54bb9f1dd1d5dfa3ca, type: 3}
+    timeBtwStage: 15

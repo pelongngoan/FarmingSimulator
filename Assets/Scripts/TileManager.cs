@@ -11,6 +11,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tile plowedTile;
     [SerializeField] private Tile treeTile;
     [SerializeField] private Item treeLog;
+    /*[SerializeField] private Tile[] croptableTile;*/
     public SpriteRenderer plant;
 
     //On start set the interactbable map to  be hidden
@@ -19,10 +20,10 @@ public class TileManager : MonoBehaviour
         foreach(var position in interactableMap.cellBounds.allPositionsWithin)
         {
             TileBase tile = interactableMap.GetTile(position);
-            if (tile != null && tile.name== "Tilled Dirt_7")
+            /*if (tile != null && (tile.name == "Hills_11" || tile.name == "Hills_10" || tile.name == "Grass_5"))
             {
                 interactableMap.SetTile(position, hiddenInteractableTile);
-            }
+            }*/
             if (tile != null && tile.name == "Basic Grass Biom things 1_1")
             {
                 interactableMap.SetTile(position, treeTile);

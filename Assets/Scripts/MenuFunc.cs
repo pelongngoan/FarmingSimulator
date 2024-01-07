@@ -11,10 +11,11 @@ public class MenuFunc : MonoBehaviour
     }
     public void Quit()
     {
-
+        /*UnityEditor.EditorApplication.isPlaying = false;*/
+        Application.Quit();
     }
     public void OutMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

@@ -8,7 +8,7 @@ namespace WorldTime
     [RequireComponent (typeof(Light2D))]
     public class WorldLight : MonoBehaviour
     {
-        private Light2D light;
+        private new Light2D light;
 
         [SerializeField] private WorldTime worldTime;
         [SerializeField] private Gradient gradient;

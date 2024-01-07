@@ -14,16 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Carrot
   icon: {fileID: -10707874, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-  isSeed: 1
+  isSeed: 0
+  eatable: 1
   crop:
     cropName: Carrot_Crop
     icon: {fileID: 0}
     plant: {fileID: 0}
-    plantStages:
-    - {fileID: -1534689368, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 1367557264, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 585112423, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 781473282, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: 556757805, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
-    - {fileID: -628078212, guid: 442ab7a80304cda4f8b8b650a924a6c8, type: 3}
+    plantStages: []
     timeBtwStage: 1
