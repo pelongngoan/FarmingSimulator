@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Inventory_UI inventory_UI;
     public bool closeToTree;
     public bool closeToPlowedDirt;
+    public bool closeToBuyer;
 
     private void Start()
     {
@@ -59,10 +60,17 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            if (inventoryManager.toolbar.selectedSlot.eatable && playerHealth.healthBar.value < playerHealth.maxHealth)
+            Debug.Log(closeToBuyer);
+            if (closeToBuyer)
+            {
+                Debug.Log("ss");
+                MoneyManager.instane.IncreaseMoney(10);
+                inventoryManager.toolbar.selectedSlot.RemoveItem();
+                GameManager.instance.uiManager.RefreshInventoryUI("Toolbar");
+            }
+            if (!closeToBuyer && inventoryManager.toolbar.selectedSlot.eatable && playerHealth.healthBar.value < playerHealth.maxHealth)
             {
                 audioManager.PlaySFX(audioManager.wateringClip);
-                Debug.Log(inventoryManager.toolbar.selectedSlot.healthBonus);
                 playerHealth.healthBar.value = playerHealth.healthBar.value + inventoryManager.toolbar.selectedSlot.healthBonus;
                 playerHealth.curHealth = playerHealth.healthBar.value;
                 inventoryManager.toolbar.selectedSlot.RemoveItem();
@@ -142,6 +150,11 @@ public class Player : MonoBehaviour
         {
             closeToPlowedDirt = true;
         }
+        if (other.CompareTag("Buyer"))
+        {
+            Debug.Log("true");
+            closeToBuyer = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -152,6 +165,10 @@ public class Player : MonoBehaviour
         if (other.CompareTag("PlowedDirt"))
         {
             closeToPlowedDirt = false;
+        }
+        if (other.CompareTag("Buyer"))
+        {
+            closeToBuyer = false;
         }
     }
 

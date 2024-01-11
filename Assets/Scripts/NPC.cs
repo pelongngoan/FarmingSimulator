@@ -22,11 +22,9 @@ public class NPC : MonoBehaviour
         dialogueText.text = "";
     }
 
-
-
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && playerIsClose)
+        if (Input.GetKeyUp(KeyCode.Space) && playerIsClose)
         {
             if (dialoguePanel.activeInHierarchy)
             {
@@ -38,18 +36,19 @@ public class NPC : MonoBehaviour
                 StartCoroutine(Typing());
             }
         }
-        if ( dialogueText.text == dialogue[index])
+        if (dialogueText.text == dialogue[index])
         {
             contBtn.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.Q) && dialoguePanel.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.A) && dialoguePanel.activeInHierarchy)
         {
-            NextLine();
-            DroppItem();
+            {
+                NextLine();
+            }
 
         }
     }
-    
+
     public void ZeroText()
     {
         dialogueText.text = "";
@@ -58,7 +57,7 @@ public class NPC : MonoBehaviour
     }
     IEnumerator Typing()
     {
-        foreach(char letter  in dialogue[index].ToCharArray())
+        foreach (char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
@@ -68,16 +67,28 @@ public class NPC : MonoBehaviour
     public void NextLine()
     {
         contBtn.SetActive(false);
-        if(index < dialogue.Length - 1)
+        if (MoneyManager.instane.current > 30)
         {
-            index++;
-            dialogueText.text = "";
-            StartCoroutine(Typing());
+
+            if (index < dialogue.Length - 1)
+            {
+                index++;
+                dialogueText.text = "";
+                StartCoroutine(Typing());
+            }
+            else
+            {
+                DroppItem();
+
+                ZeroText();
+            }
         }
         else
         {
-            ZeroText();
+            dialogueText.text = "You need at less 30$ to me to drop random food";
+            StartCoroutine(Typing());
         }
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -96,8 +107,9 @@ public class NPC : MonoBehaviour
     }
     public void DroppItem()
     {
+        MoneyManager.instane.DecreaseMoney(30);
         Vector3 dropPosition = new Vector3(transform.position.x + Random.Range(-dropDistance, dropDistance), transform.position.y, transform.position.z);
-        Instantiate(itemToDrop, dropPosition, Quaternion.identity);
+        Instantiate(GameManager.instance.itemManager.GetItemByName("Crop" + Random.Range(1, 9)), dropPosition, Quaternion.identity);
         Instantiate(itemToDrop, dropPosition + new Vector3(dropDistance, 0f, 0f), Quaternion.identity);
     }
 }
